@@ -99,3 +99,5 @@ cellID_obs_sample_two = cellID_obs[cellID_obs_sample_one[0].str.contrains("sampl
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_one)]]
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_two)]]
 ```
+-------------------------------------------------
+Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. 
