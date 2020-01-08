@@ -19,5 +19,4 @@ chemistry for your samples. The command is then as follows:
 ```
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
 ```
-
-The reason that Samtools is needed is that Velocyto will sort your bam file first.
+Once this step has finished and your loom file is generated, we will go ahead and use anndata to import our loom file and make the necessary adjustments/additions. 
