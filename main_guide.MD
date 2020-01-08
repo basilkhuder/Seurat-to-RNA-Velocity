@@ -77,7 +77,7 @@ With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom 
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
 ```
 **If your Seurat Object has multiple samples**<br>
--------------------------------------------------<br>
+-------------------------------------------------
 If you have individual observation files for every sample, you'll do the filtering above one by one.  If you have a combined observation file, you'll want to filter it based upon the cell pattern and then use that to filter the RNA Velocity sample. For example, if these
 were your Cell IDs:
 <br><br>
