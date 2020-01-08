@@ -38,7 +38,7 @@ write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 *If you have a Seurat object that is composed of multiple single-cell samples, you either can use the code above, and then later
 on use some type of pattern to extract each sample (for example, if you added unique cell prefixes to each sample then you
 could use that pattern.)  Likewise, you canalso create a cell ID observation file for every sample, and use each one 
-individually to filter each RNA Velocity object. *
+individually to filter each RNA Velocity object.*
 
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
@@ -75,4 +75,11 @@ With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom 
 
 ```
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
+```
+
+If you have multiple observation files for each sample, you'll do this one by one.  If you have a combined observation file, you'll
+want to filter it based upon the cell pattern and then use that to filter the RNA Velocity sample. For example: 
+
+```
+cellID_obs_sample_one = cellID_obs[cellID_obs_sample_one[0].str.contrains("cellpattern_")]
 ```
