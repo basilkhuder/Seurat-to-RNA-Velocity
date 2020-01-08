@@ -38,7 +38,6 @@ One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData
 %%R
 write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
-%%R
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
 %%R
