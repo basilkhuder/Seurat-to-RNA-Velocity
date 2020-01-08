@@ -38,5 +38,12 @@ We need to retrieve our filtered cell IDs from Seurat so we can subset our loom 
 ways to pull your cell observations in Seurat.  One way is to extract the column names from the GetAssayData function as such:
 
 ```
-write.table(colnames(GetAssayData(seurat_object))
+write.table(colnames(GetAssayData(seurat_object)), file="sample_obs.csv")
 ```
+We'll now import these cell ids into anndata and filter our anndata object based upon these cells. 
+
+```
+sample_obs = pd.read_csv("sample_obs.csv")
+sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,sample_obs[0])]]
+```
+
