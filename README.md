@@ -13,7 +13,7 @@ To start, we'll be generating loom files for every single-cell sample you used i
 
 Note that I've found it better to use ```velocyto run``` for which ever scRNA-seq chemistry you are working with rather than Velocyto's "ready-to-use subcommands." 
 The only caveat is you'll have to use a filtered barcode file in conjunction with the run command, but you can easily find those from
-your sequencing company's website. I've uploaded 10XV2 and 10XV2 filtered barcodes in this repo that you can use if that is the
+your sequencing company's website. I've uploaded 10XV2 and 10XV3 filtered barcodes in this repo that you can use if that is the
 chemistry for your samples. The command is then as follows:
 
 ```
