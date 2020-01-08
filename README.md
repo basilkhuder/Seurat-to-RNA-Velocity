@@ -1,7 +1,7 @@
 # Seurat to RNA-Velocity
 
 This guide will show you how you can use a processed/normalized Seurat object in conjunction with your RNA Velocity analysis. 
-This guide will use the following programs: <br>
+We will be using the following programs: <br>
 
 - [scVelo](https://github.com/theislab/scvelo)
 - [Anndata](https://icb-anndata.readthedocs-hosted.com/en/stable/)
