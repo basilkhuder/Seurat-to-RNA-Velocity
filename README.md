@@ -37,7 +37,7 @@ One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData
 ```
 write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
-To get UMAP coordinates, we use the ```Embeddings``` function:
+To get UMAP coordinates, we use the ```Embeddings``` method:
 ```
 write.table(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
 
