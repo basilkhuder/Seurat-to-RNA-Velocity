@@ -22,3 +22,21 @@ velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_f
 Once this step has finished and your loom file is generated, we will go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
 an interactive jupyter notebook is provided here.
 
+```
+import anndata
+import scvelo as scv
+import pandas as pd
+import numpy as np
+import matplotlib as plt
+
+sample_one = anndata.read_loom("sample_one.loom")
+....
+sample_n = anndata.read_loom("sample_n.loom")
+'''
+
+We need to retrieve our filtered cell IDs from Seurat so we can subset our loom files to only include these cells. There are many
+ways to pull your cell observations in Seurat.  One way is to extract the column names from the GetAssayData function as such:
+
+```
+write.table(colnames(GetAssayData(seurat_object))
+```
