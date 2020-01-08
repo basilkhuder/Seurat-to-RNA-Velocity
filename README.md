@@ -7,7 +7,7 @@ We will be using the following programs: <br>
 - [scVelo](https://github.com/theislab/scvelo) (For RNA Velocity)
 - [Velocyto](http://velocyto.org/) (To produce our initial RNA Velocity Object)
 - [Anndata](https://icb-anndata.readthedocs-hosted.com/en/stable/) (For manipulation of our RNA Velocity object)
-- Seurat (To extract meta data from processed Seurat object)
+- Seurat
 - Samtools *optional* (Velocyto will run Samtools sort on unsorted .bam)
 
 To start, we'll be generating loom files for every single-cell sample you used in your Seurat analysis using Velocyto's <br>```velocyto run```
