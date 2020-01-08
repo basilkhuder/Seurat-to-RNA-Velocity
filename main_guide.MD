@@ -95,9 +95,9 @@ You could use the pattern sample1_, sample2_, to filter as such:
 
 ```
 cellID_obs_sample_one = cellID_obs[cellID_obs_sample_one[0].str.contrains("sample1_")]
-cellID_obs_sample_two = cellID_obs[cellID_obs_sample_one[0].str.contrains("sample2_")]
+cellID_obs_sample_two = cellID_obs[cellID_obs_sample_two[0].str.contrains("sample2_")]
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_one)]]
-sample_two = sample_two[sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_two)]]
+sample_two = sample_two[sample_one[np.isin(sample_two.obs.index,cellID_obs_sample_two)]]
 ```
 Once all the samples have been properly filtered, we can merge them into one. 
 ```
