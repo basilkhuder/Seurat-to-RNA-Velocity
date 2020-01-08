@@ -32,17 +32,21 @@ our RNA Velocity object. This includes:
 - UMAP or TSNE Embeddings
 - Clusters
 
-One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` method and extract the column names:
+One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` function and extract the column names:
 
 ```
 write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
-To get UMAP coordinates, we use the ```Embeddings``` method:
+To get UMAP coordinates, we use the ```Embeddings``` function:
 ```
 write.table(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
 
 ```
+And finally we can extract our clusters with: 
 
+```
+write.table(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
+```
 ```
 import anndata
 import scvelo as scv
