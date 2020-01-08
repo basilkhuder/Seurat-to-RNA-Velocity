@@ -39,13 +39,15 @@ write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
 write.table(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
-
 ```
 And finally we can extract our clusters with: 
 
 ```
 write.table(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
 ```
+
+We now can import our loom file(s) and all of our Seurat meta data using anndata
+
 ```
 import anndata
 import scvelo as scv
@@ -57,12 +59,15 @@ import matplotlib as plt
 sample_one = anndata.read_loom("sample_one.loom")
 ....
 sample_n = anndata.read_loom("sample_n.loom")
+
+sample_obs = pd.read_csv("cellID_obs.csv")
+umap_cord = pd.read_csv("cell_embeddings.csv")
+cell_clusters = pd.read_csv("clusters_obs.csv")
 ```
 
-  
+With our filtered Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon these IDs.  
 
 ```
-sample_obs = pd.read_csv("sample_obs.csv")
-sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,sample_obs[0])]]
+sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
 ```
 
