@@ -21,7 +21,7 @@ Note that I've found it better to use ```velocyto run``` for whichever scRNA-seq
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
 ```
 Once this step has finished and your loom file is generated, we can go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
-an interactive jupyter notebook is provided here.
+a jupyter notebook is provided here.
 
 But, before we do that, we will export all of the necessary meta data from our Seurat object that we will need for our RNA Velocity object. This includes:
 
@@ -35,6 +35,7 @@ One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData
 %%R
 write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
+
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
 %%R
@@ -66,7 +67,7 @@ umap_cord = pd.read_csv("cell_embeddings.csv")
 cell_clusters = pd.read_csv("clusters_obs.csv")
 ```
 
-With our filtered Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon these IDs.  
+With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon these them.  
 
 ```
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
