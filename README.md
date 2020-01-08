@@ -31,6 +31,7 @@ import scvelo as scv
 import pandas as pd
 import numpy as np
 import matplotlib as plt
+%load_ext rpy2.ipython
 
 sample_one = anndata.read_loom("sample_one.loom")
 ....
@@ -41,6 +42,7 @@ We need to retrieve our filtered cell IDs from Seurat so we can subset our loom 
 ways to pull your cell observations in Seurat.  One way is to extract the column names from the GetAssayData function as such:
 
 ```
+%%R
 write.table(colnames(GetAssayData(seurat_object)), file="sample_obs.csv")
 ```
 We'll now import these cell IDs into anndata and filter our anndata object based upon these cells. 
