@@ -1,5 +1,5 @@
 # Seurat to RNA-Velocity
-### By Basil Khuder
+#### *By Basil Khuder*
 
 This guide will show you how you can use a processed/normalized Seurat object in conjunction with your RNA Velocity analysis. 
 We will be using the following programs: <br>
