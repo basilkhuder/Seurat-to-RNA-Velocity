@@ -34,15 +34,19 @@ But, before we do that, we will export all of the necessary meta data from our S
 One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` function and extract the column names:
 
 ```
+%%R
 write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
+%%R
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
+%%R
 write.table(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
 ```
 And finally we can extract our clusters with: 
 
 ```
+%%R
 write.table(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
 ```
 
