@@ -22,8 +22,26 @@ chemistry for your samples. The command is then as follows:
 ```
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
 ```
-Once this step has finished and your loom file is generated, we will go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
+Once this step has finished and your loom file is generated, we can go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
 an interactive jupyter notebook is provided here.
+
+But, before we do that, we will export all of the necessary meta data from our Seurat object that we will be incorporating into
+our RNA Velocity object. This includes:
+
+- Filtered Cell IDS
+- UMAP or TSNE Embeddings
+- Clusters
+
+One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` method and extract the column names:
+
+```
+write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
+```
+To get UMAP coordinates, we use the ```Embeddings``` function:
+```
+write.table(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
+
+```
 
 ```
 import anndata
@@ -38,14 +56,7 @@ sample_one = anndata.read_loom("sample_one.loom")
 sample_n = anndata.read_loom("sample_n.loom")
 ```
 
-We need to retrieve our filtered cell IDs from Seurat so we can subset our loom files to only include these cells. There are many
-ways to pull your cell observations in Seurat.  One way is to extract the column names from the GetAssayData function as such:
-
-```
-%%R
-write.table(colnames(GetAssayData(seurat_object)), file="sample_obs.csv")
-```
-We'll now import these cell IDs into anndata and filter our anndata object based upon these cells. 
+  
 
 ```
 sample_obs = pd.read_csv("sample_obs.csv")
