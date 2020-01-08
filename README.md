@@ -40,7 +40,7 @@ ways to pull your cell observations in Seurat.  One way is to extract the column
 ```
 write.table(colnames(GetAssayData(seurat_object)), file="sample_obs.csv")
 ```
-We'll now import these cell ids into anndata and filter our anndata object based upon these cells. 
+We'll now import these cell IDs into anndata and filter our anndata object based upon these cells. 
 
 ```
 sample_obs = pd.read_csv("sample_obs.csv")
