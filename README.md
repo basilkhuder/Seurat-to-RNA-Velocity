@@ -78,8 +78,8 @@ sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
 ```
 **If your Seurat Object has multiple samples**<br>
 -------------------------------------------------<br>
-If you have individual observation files for every sample, you'll do the filtering above one by one.  If you have a combined observation file, you'llwant to filter it based upon the cell pattern and then use that to filter the RNA Velocity sample. For example, if these
-were your Cell IDs
+If you have individual observation files for every sample, you'll do the filtering above one by one.  If you have a combined observation file, you'll want to filter it based upon the cell pattern and then use that to filter the RNA Velocity sample. For example, if these
+were your Cell IDs:
 <br><br>
 
 | Sample Cell IDs | 
@@ -91,7 +91,7 @@ were your Cell IDs
 
 <br>
 
-You could use the pattern sample1_, sample2_, to filter as such 
+You could use the pattern sample1_, sample2_, to filter as such:
 
 ```
 cellID_obs_sample_one = cellID_obs[cellID_obs_sample_one[0].str.contrains("sample1_")]
