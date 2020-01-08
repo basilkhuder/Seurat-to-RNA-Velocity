@@ -32,7 +32,7 @@ import matplotlib as plt
 sample_one = anndata.read_loom("sample_one.loom")
 ....
 sample_n = anndata.read_loom("sample_n.loom")
-'''
+```
 
 We need to retrieve our filtered cell IDs from Seurat so we can subset our loom files to only include these cells. There are many
 ways to pull your cell observations in Seurat.  One way is to extract the column names from the GetAssayData function as such:
