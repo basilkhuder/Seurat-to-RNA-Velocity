@@ -19,4 +19,6 @@ chemistry for your samples. The command is then as follows:
 ```
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
 ```
-Once this step has finished and your loom file is generated, we will go ahead and use anndata to import our loom file and make the necessary adjustments/additions. 
+Once this step has finished and your loom file is generated, we will go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
+an interactive jupyter notebook is provided here.
+
