@@ -35,6 +35,10 @@ One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData
 %%R
 write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
+*If you have a Seurat object that is composed of multiple single-cell samples, you either can use the code above, and then later
+on use some type of pattern to extract each sample (for example, if you added unique cell prefixes to each sample then you
+could use that pattern.)  Likewise, you canalso create a cell ID observation file for every sample, and use each one 
+individually to filter each RNA Velocity object. *
 
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
@@ -67,9 +71,8 @@ umap_cord = pd.read_csv("cell_embeddings.csv")
 cell_clusters = pd.read_csv("clusters_obs.csv")
 ```
 
-With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon these them.  
+With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon them.  
 
 ```
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
 ```
-
