@@ -82,4 +82,5 @@ want to filter it based upon the cell pattern and then use that to filter the RN
 
 ```
 cellID_obs_sample_one = cellID_obs[cellID_obs_sample_one[0].str.contrains("cellpattern_")]
+sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_one)]]
 ```
