@@ -11,7 +11,7 @@ We will be using the following programs: <br>
 - Samtools 
  -- *optional* (Velocyto will run Samtools sort on unsorted .bam)
 
-To start, we'll be generating loom files for every single-cell sample you used in your Seurat analysis using Velocyto's <br>```velocyto run```
+To start, we'll be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis using Velocyto's <br>```velocyto run```
 
 *Although there are a plethora of more up-to-date and less memory intensive software to produce the spliced/unspliced matrix required
 for RNA Velocity, Velocyto's run command is still a more straightforward approach.*
