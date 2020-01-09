@@ -11,7 +11,7 @@ We will be using the following programs: <br>
 - Samtools 
  -- *optional* (Velocyto will run Samtools sort on unsorted .bam)
 
-To start, we'll be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis using Velocyto's <br>```velocyto run```
+To start, we'll be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis using Velocyto's ``velocyto run```
 
 *Although there are a plethora of more up-to-date and less memory intensive software to produce the spliced/unspliced matrix required
 for RNA Velocity, Velocyto's run command is still a more straightforward approach.*
@@ -20,6 +20,9 @@ Note that I've found it better to use ```velocyto run``` for whichever scRNA-seq
 ```
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
 ```
+**If time or memory is limited, you can disregard the -m parameter. Just note that this could contribute a downstream confounding factor
+later on in the analysis.**
+
 Once this step has finished and your loom file is generated, we can go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
 a jupyter notebook is provided here.
 
