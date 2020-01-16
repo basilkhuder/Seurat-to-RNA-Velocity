@@ -23,8 +23,7 @@ velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_f
 *If time or memory is limited, you can disregard the -m parameter. Just note that this could contribute a downstream confounding factor
 later on in the analysis.*
 
-Once this step has finished and your loom file is generated, we can go ahead and use anndata to import our loom file and make the necessary adjustments/additions. If you'd like a more interactive visualization for the rest of this guide,
-a jupyter notebook is provided here.
+Once this step has finished and your loom file is generated, we can go ahead and use anndata to import our loom file and make the necessary adjustments/additions. 
 
 But, before we do that, we will export all of the necessary meta data from our Seurat object that we will need for our RNA Velocity object. This includes:
 
