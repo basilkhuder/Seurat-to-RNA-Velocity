@@ -137,3 +137,12 @@ Since we're certain the orders are the same, we can remove the first column of t
 umap_ordered = umap_ordered.iloc[:,1:]
 sample_one.obsm['X_umap'] = umap_ordered.values
 ```
+At this point, we can now run the scVelo commands and generate our RNA Velocity plot based upon our Seurat UMAP coordinates.
+
+```
+scv.pp.filter_and_normalize(sample_one)
+scv.pp.moments(sample_one)
+scv.tl.velocity(sample_one, mode = "stochastic")
+scv.tl.velocity_graph(sample_one)
+scv.pl.velocity_embedding(sample_one, basis='umap')
+```
