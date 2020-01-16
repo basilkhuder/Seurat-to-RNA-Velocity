@@ -1,8 +1,7 @@
 # Seurat to RNA-Velocity
 #### *By Basil Khuder*
 
-This guide will show you how you can use a processed/normalized Seurat object in conjunction with your RNA Velocity analysis. 
-We will be using the following programs: <br>
+This guide will show you how you can use a processed/normalized Seurat object in conjunction with your RNA Velocity analysis. Keep in mind that although Seurat is R-based, all of the available RNA Velocity software/packages are Python, so we'll be moving back and forth between the two. We will be using the following programs: <br>
 
 - [scVelo](https://github.com/theislab/scvelo) (For RNA Velocity)
 - [Velocyto](http://velocyto.org/) (To produce our initial RNA Velocity Object)
@@ -108,7 +107,12 @@ Once all the samples have been properly filtered, we can merge them into one.
 sample_one = sample_one.concatenate(sample_two,sample_three,sample_four)
 ```
 -------------------------------------------------
-Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. With the coordinates, we'll need to make sure we add them so they match the order of the Cell IDs in our anndata object. Our Cell IDs are rownames in the observation layer of our object, so we can view them by using the following:
+Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. We'll first upload them:
+```
+umap = pd.read_csv("umap.csv")
+```
+
+With the coordinates, we'll need to make sure we add them so they match the order of the Cell IDs in our anndata object. Our Cell IDs are rownames in the observation layer of our object, so we can view them by using the following:
 
 ```
 sample_one.obs.index
