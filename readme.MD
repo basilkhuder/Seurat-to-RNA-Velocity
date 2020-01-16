@@ -79,7 +79,7 @@ With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom 
 ```
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
 ```
-**If your Seurat Object has multiple samples**<br>
+#### *If your Seurat object has multiple samples*<br>
 -------------------------------------------------
 If you have individual observation files for every sample, you'll do the filtering above one by one.  If you have a combined observation file, you'll want to filter it based upon the cell pattern and then use that to filter the RNA Velocity sample. For example, if these
 were your Cell IDs:
@@ -117,4 +117,23 @@ With the coordinates, we'll need to make sure we add them so they match the orde
 ```
 sample_one.obs.index
 ```
+Let's cast our index as a data frame and convert the column name
 
+```
+sample_one_index = pd.DataFrame(sample_one.obs.index]
+sample_one = sample_one_index.rename(columns = {0:'Cell ID'})
+```
+Let's also convert the first column of our UMAP data frame:
+
+```
+umap = umap.rename(Columns = {'Unnamed: 0':'Cell ID'})
+```
+Now if we merge our index dataframe with our UMAP, the order will match our anndata object.
+```
+umap_ordered = sample_one_index.merge(umap,on="Cell ID")
+```
+Now that we're certain the orders are the same, we can remove the first column of the data frame and add the UMAP coordinates to our anndata object.
+```
+umap_ordered = umap_ordered.iloc[:,1:]
+sample_one.obsm['X_umap'] = umap_ordered.values
+```
