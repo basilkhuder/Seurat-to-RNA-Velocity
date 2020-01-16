@@ -29,7 +29,8 @@ But, before we do that, we will export all of the necessary meta-data from our S
 
 - Filtered Cell IDS
 - UMAP or TSNE coordinates
-- Clusters
+- Clusters (Optional)
+- Cluster Colors (Optional)
 
 One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` function and extract the column names:
 
