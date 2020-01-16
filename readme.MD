@@ -117,13 +117,13 @@ With the coordinates, we'll need to make sure we add them so they match the orde
 ```
 sample_one.obs.index
 ```
-Let's cast our index as a data frame and convert the column name
+Let's cast our index as a data frame and change the column name
 
 ```
 sample_one_index = pd.DataFrame(sample_one.obs.index]
 sample_one = sample_one_index.rename(columns = {0:'Cell ID'})
 ```
-Let's also convert the first column of our UMAP data frame:
+Let's also change the first column of our UMAP data frame to the same name:
 
 ```
 umap = umap.rename(Columns = {'Unnamed: 0':'Cell ID'})
@@ -132,7 +132,7 @@ Now if we merge our index dataframe with our UMAP, the order will match our annd
 ```
 umap_ordered = sample_one_index.merge(umap,on="Cell ID")
 ```
-Now that we're certain the orders are the same, we can remove the first column of the data frame and add the UMAP coordinates to our anndata object.
+Since we're certain the orders are the same, we can remove the first column of the data frame and, finally, add the UMAP coordinates to our anndata object.
 ```
 umap_ordered = umap_ordered.iloc[:,1:]
 sample_one.obsm['X_umap'] = umap_ordered.values
