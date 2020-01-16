@@ -132,11 +132,17 @@ Now if we merge our index dataframe with our UMAP, the order will match our annd
 ```
 umap_ordered = sample_one_index.merge(umap,on="Cell ID")
 ```
-Since we're certain the orders are the same, we can remove the first column of the data frame and, finally, add the UMAP coordinates to our anndata object.
+Since we're certain the orders are the same, we can remove the first column of the data frame and add the UMAP coordinates to our anndata object.
 ```
 umap_ordered = umap_ordered.iloc[:,1:]
 sample_one.obsm['X_umap'] = umap_ordered.values
 ```
+Clusters and their cluster colors can be added in the same fashion (and again, they must match the order of the Cell IDs.) Instead of adding them as an multidimensional observation ('obsm'), we'd add them under the unstructured annotation 'uns.'
+
+```
+sample_one.uns['Cluster_colors']
+```
+
 At this point, we can now run the scVelo commands and generate our RNA Velocity plot based upon our Seurat UMAP coordinates.
 
 ```
@@ -145,4 +151,8 @@ scv.pp.moments(sample_one)
 scv.tl.velocity(sample_one, mode = "stochastic")
 scv.tl.velocity_graph(sample_one)
 scv.pl.velocity_embedding(sample_one, basis='umap')
+```
+If you want to incorporate your clusters and cluster colors in the embedding plot, the parameters you would add would be:
+```
+color = sample_one.uns['Cluster_colors']
 ```
