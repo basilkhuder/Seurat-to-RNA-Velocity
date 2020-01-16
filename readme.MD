@@ -1,7 +1,7 @@
 # Seurat to RNA-Velocity
 #### *By Basil Khuder*
 
-This guide will show you how you can use a processed/normalized Seurat object in conjunction with your RNA Velocity analysis. Keep in mind that although Seurat is R-based, all of the available RNA Velocity software/packages are Python, so we'll be moving back and forth between the two. We will be using the following programs: <br>
+This guide will demonstrate how to use a processed/normalized Seurat object in conjunction with an RNA Velocity analysis. Keep in mind that although Seurat is R-based, all of the available RNA Velocity software/packages are Python, so we will be moving back and forth between the two. We will be using the following programs: <br>
 
 - [scVelo](https://github.com/theislab/scvelo) (For RNA Velocity)
 - [Velocyto](http://velocyto.org/) (To produce our initial RNA Velocity Object)
@@ -10,12 +10,12 @@ This guide will show you how you can use a processed/normalized Seurat object in
 - Samtools 
  -- *optional* (Velocyto will run Samtools sort on unsorted .bam)
 
-To start, we'll be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis using Velocyto's ```velocyto run```
+To start, we will be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis using Velocyto's ```velocyto run```
 
-*Although there are a plethora of more up-to-date and less memory intensive software to produce the spliced/unspliced matrix required
+*Although there is a plethora of more up-to-date and less memory intensive software to produce the spliced/unspliced matrix required
 for RNA Velocity, Velocyto's run command is still a more straightforward approach.*
 
-Note that I've found it better to use ```velocyto run``` 
+Note that I have found it easier to use ```velocyto run``` 
 for whichever scRNA-seq chemistry you are working with rather than Velocyto's "ready-to-use subcommands." 
 ```
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
@@ -25,7 +25,7 @@ later on in the analysis.*
 
 Once this step has finished and your loom file is generated, we can go ahead and use anndata to import our loom file and make the necessary adjustments/additions. 
 
-But, before we do that, we will export all of the necessary meta data from our Seurat object that we will need for our RNA Velocity object. This includes:
+But, before we do that, we will export all of the necessary meta-data from our Seurat object that is needed for our RNA Velocity object. This includes:
 
 - Filtered Cell IDS
 - UMAP or TSNE coordinates
@@ -54,7 +54,7 @@ And finally we can extract our clusters with:
 write.csv(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
 ```
 
-We now can import our loom file(s) and all of our Seurat meta data using anndata
+We now can import our loom file(s) and all of our Seurat meta-data using anndata
 
 ```
 import anndata
@@ -111,7 +111,7 @@ Now that we have our Velocity file filtered based upon our Seurat object, we can
 umap = pd.read_csv("umap.csv")
 ```
 
-With the coordinates, we'll need to make sure we add them so they match the order of the Cell IDs in our anndata object. Our Cell IDs are rownames in the observation layer of our object, so we can view them by using the following:
+With the coordinates, we will need to make sure we add them so they match the order of the Cell IDs in our anndata object. Our Cell IDs are rownames in the observation layer of our object, so we can view them by using the following:
 
 ```
 sample_one.obs.index
