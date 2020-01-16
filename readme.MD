@@ -37,7 +37,7 @@ One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData
 
 ```
 %%R
-write.table(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
+write.csv(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
 *If you have a Seurat object that is composed of multiple single-cell samples, you either can use the code above, and then later
 on use some type of pattern to extract each sample (for example, if you added unique cell prefixes to each sample then you
@@ -47,13 +47,13 @@ individually to filter each RNA Velocity object.*
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 ```
 %%R
-write.table(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
+write.csv(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
 ```
 And finally we can extract our clusters with: 
 
 ```
 %%R
-write.table(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
+write.csv(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
 ```
 
 We now can import our loom file(s) and all of our Seurat meta data using anndata
@@ -108,4 +108,9 @@ Once all the samples have been properly filtered, we can merge them into one.
 sample_one = sample_one.concatenate(sample_two,sample_three,sample_four)
 ```
 -------------------------------------------------
-Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. 
+Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. With the coordinates, we'll need to make sure we add them so they match the order of the Cell IDs in our anndata object. Our Cell IDs are rownames in the observation layer of our object, so we can view them by using the following:
+
+```
+sample_one.obs.index
+```
+
