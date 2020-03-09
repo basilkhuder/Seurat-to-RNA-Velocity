@@ -17,7 +17,7 @@ for RNA Velocity, Velocyto's run command is still a more straightforward approac
 
 Note that I have found it easier to use ```velocyto run``` 
 for whichever scRNA-seq chemistry you are working with rather than Velocyto's "ready-to-use subcommands." 
-```
+``` 
 velocyto run -b filtered_barcodes.tsv -o output_path -m repeat_msk_srt.gtf bam_file.bam annotation.gtf
 ```
 *If time or memory is limited, you can disregard the -m parameter. Just note that this could contribute a downstream confounding factor
@@ -34,7 +34,7 @@ But, before we do that, we will export all of the necessary meta-data from our S
 
 One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` function and extract the column names:
 
-```
+``` r
 %%R
 write.csv(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
 ```
@@ -44,20 +44,21 @@ could use that pattern.)  Likewise, you can also create a cell ID observation fi
 individually to filter each RNA Velocity object.*
 
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
-```
+
+``` r
 %%R
 write.csv(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
 ```
 And finally we can extract our clusters with: 
 
-```
+```r
 %%R
 write.csv(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
 ```
 
 We now can import our loom file(s) and all of our Seurat meta-data using anndata
 
-```
+```python
 import anndata
 import scvelo as scv
 import pandas as pd
@@ -66,7 +67,7 @@ import matplotlib as plt
 %load_ext rpy2.ipython
 
 sample_one = anndata.read_loom("sample_one.loom")
-....
+.... 
 sample_n = anndata.read_loom("sample_n.loom")
 
 sample_obs = pd.read_csv("cellID_obs.csv")
@@ -76,7 +77,7 @@ cell_clusters = pd.read_csv("clusters_obs.csv")
 
 With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon them.  
 
-```
+``` python
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
 ```
 #### *If your Seurat object has multiple samples*<br>
@@ -96,56 +97,56 @@ were your Cell IDs:
 
 You could use the pattern sample1_, sample2_, to filter as such:
 
-```
+``` python
 cellID_obs_sample_one = cellID_obs[cellID_obs_sample_one[0].str.contrains("sample1_")]
 cellID_obs_sample_two = cellID_obs[cellID_obs_sample_two[0].str.contrains("sample2_")]
 sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_one)]]
 sample_two = sample_two[sample_one[np.isin(sample_two.obs.index,cellID_obs_sample_two)]]
 ```
 Once all the samples have been properly filtered, we can merge them into one. 
-```
+``` python
 sample_one = sample_one.concatenate(sample_two,sample_three,sample_four)
 ```
 -------------------------------------------------
 Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. We'll first upload them:
-```
+``` python
 umap = pd.read_csv("umap.csv")
 ```
 
 With the coordinates, we will need to make sure we add them so they match the order of the Cell IDs in our anndata object. Our Cell IDs are rownames in the observation layer of our object, so we can view them by using the following:
 
-```
+``` python
 sample_one.obs.index
 ```
 Let's cast our index as a data frame and change the column name
 
-```
+``` python
 sample_one_index = pd.DataFrame(sample_one.obs.index]
 sample_one = sample_one_index.rename(columns = {0:'Cell ID'})
 ```
 Let's also change the first column of our UMAP data frame to the same name:
 
-```
+``` python
 umap = umap.rename(Columns = {'Unnamed: 0':'Cell ID'})
 ```
 Now if we merge our index dataframe with our UMAP, the order will match our anndata object.
-```
+``` python
 umap_ordered = sample_one_index.merge(umap,on="Cell ID")
 ```
 Since we're certain the orders are the same, we can remove the first column of the data frame and add the UMAP coordinates to our anndata object.
-```
+``` python
 umap_ordered = umap_ordered.iloc[:,1:]
 sample_one.obsm['X_umap'] = umap_ordered.values
 ```
 Clusters and their cluster colors can be added in the same fashion (and again, they must match the order of the Cell IDs.) Instead of adding them as an multidimensional observation ('obsm'), we'd add them under the unstructured annotation 'uns.'
 
-```
+``` python
 sample_one.uns['Cluster_colors']
 ```
 
 At this point, we can now run the scVelo commands and generate our RNA Velocity plot based upon our Seurat UMAP coordinates.
 
-```
+``` python
 scv.pp.filter_and_normalize(sample_one)
 scv.pp.moments(sample_one)
 scv.tl.velocity(sample_one, mode = "stochastic")
