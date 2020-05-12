@@ -181,6 +181,7 @@ If you want to incorporate your clusters and cluster colors in the embedding plo
 color = sample_one.uns['Cluster_colors']
 ```
 
-## FAQ
+## FAQ<br>
 *For Kallisto Bustools, why should I generate a LOOM file rather than an h5ad file?*
+<br>
 Either one is fine. I reccomended generating a LOOM file just in case the user wanted to use Velocyto for their RNA velocity. But the h5ad format makes more sense if you're using scVelo for RNA velocity (the Anndata format is an extension of h5ad.)
