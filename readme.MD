@@ -4,17 +4,38 @@
 This guide will demonstrate how to use a processed/normalized Seurat object in conjunction with an RNA Velocity analysis. Keep in mind that although Seurat is R-based, all of the available RNA Velocity software/packages are Python, so we will be moving back and forth between the two. We will be using the following programs: <br>
 
 - [scVelo](https://github.com/theislab/scvelo) (For RNA Velocity)
-- [Velocyto](http://velocyto.org/) (To produce our initial RNA Velocity Object)
+- [Velocyto](http://velocyto.org/) or [Kallisto Bustools](https://www.kallistobus.tools/introduction) (To produce our initial RNA Velocity Object) 
 - [Anndata](https://icb-anndata.readthedocs-hosted.com/en/stable/) (For manipulation of our RNA Velocity object)
 - Seurat
 - Samtools 
  -- *optional* (Velocyto will run Samtools sort on unsorted .bam)
+ 
+ ## Generating LOOM files
 
-To start, we will be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis using Velocyto's ```velocyto run```
+To start, we will be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis. The two methods I will discuss for doing this will be Velocyto's ```run``` command and Kallisto Bustools (KB.) 
 
-*Although there is a plethora of more up-to-date and less memory intensive software to produce the spliced/unspliced matrix required
-for RNA Velocity, Velocyto's run command is still a more straightforward approach.*
+### Kallisto Bustools (KB) 
+#### Installation
+As of 5/12, to get the most up-to-date Kallisto Bustools (KB), you should install it from Github as shown below. Some of these parameters won't work if you install KB from pypi.org
 
+```
+pip install git+https://github.com/pachterlab/kb_python@devel
+```
+Using KB is a two-step process with you first creating a reference and then generating the counts table. You'll need FASTA and GTF files for your species (download them from Ensembl if you need them: https://useast.ensembl.org/info/data/ftp/index.html)
+
+The ```-g```, ```-f1```, ```-f2```, ```c1```, ```-c2``` are all files that will be generated from the kb ref step (you don't need to provide them, just give them names. ) 
+
+```
+kb ref -i index.idx -g t2g.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_t2c.txt -c2 intron_t2c.txt --workflow lamanno \
+fasta.fa \
+gtf.gtf
+```
+We'll then use ```kb count``` to generate our LOOM file. -x specifies the single-cell technology (use ```kb --list``` for all technology parameters) and --lamanno specifies we want to calculate RNA velocity. 
+
+```
+kb count -i transcriptome.idx -g t2g.txt -x 10xv2 --lamanno --loom -f1 cdna.fa -f2 intron.fa -c1 cdna_t2c.txt -c2 intron_t2c.txt read_1.fastq.gz read_2.fastq.gz  
+```
+### Velocyto
 Note that I have found it easier to use ```velocyto run``` 
 for whichever scRNA-seq chemistry you are working with rather than Velocyto's "ready-to-use subcommands." 
 ``` 
@@ -31,6 +52,8 @@ But, before we do that, we will export all of the necessary meta-data from our S
 - UMAP or TSNE coordinates
 - Clusters (Optional)
 - Cluster Colors (Optional)
+
+## Extracting Meta-data
 
 One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` function and extract the column names:
 
@@ -157,3 +180,7 @@ If you want to incorporate your clusters and cluster colors in the embedding plo
 ```
 color = sample_one.uns['Cluster_colors']
 ```
+
+## FAQ
+*For Kallisto Bustools, why should I generate a LOOM file rather than an h5ad file?*
+Either one is fine. I reccomended generating a LOOM file just in case the user wanted to use Velocyto for their RNA velocity. But the h5ad format makes more sense if you're using scVelo for RNA velocity (the Anndata format is an extension of h5ad.)
