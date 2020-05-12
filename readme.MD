@@ -74,13 +74,13 @@ Once this step has finished and your loom file is generated, we can go ahead and
 
 But, before we do that, we will export all of the necessary meta-data from our Seurat object that is needed for our RNA Velocity object. This includes:
 
-- Filtered Cell IDS
+- Filtered Cell Ids
 - UMAP or TSNE coordinates
 - Clusters (Optional)
 - Cluster Colors (Optional)
 
 ## Extracting Meta-data
-One way we can access our filtered Cell ID's is through Seurat's ```GetAssayData``` function and extract the column names:
+One way we can access our filtered cell id's is through Seurat's ```GetAssayData``` function and extract the column names:
 
 ``` r
 %%R
