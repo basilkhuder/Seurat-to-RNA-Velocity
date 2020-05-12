@@ -10,7 +10,7 @@ This guide will demonstrate how to use a processed/normalized Seurat object in c
 - Samtools 
  -- *optional* (Velocyto will run Samtools sort on unsorted .bam)
  
- ## Generating LOOM files
+ ## Generating Loom files
 
 To start, we will be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis. The two methods I will discuss for doing this will be Velocyto's ```run``` command and Kallisto Bustools (KB.) 
 
@@ -182,6 +182,6 @@ color = sample_one.uns['Cluster_colors']
 ```
 
 ## FAQ<br>
-*For Kallisto Bustools, why should I generate a LOOM file rather than an h5ad file?*
+*For Kallisto Bustools, why should I generate a loom file rather than an h5ad file?*
 <br>
-Either one is fine. I reccomended generating a LOOM file just in case the user wanted to use Velocyto for their RNA velocity. But the h5ad format makes more sense if you're using scVelo for RNA velocity (the Anndata format is an extension of h5ad.)
+Either one is fine. I reccomended generating a loom file just in case the user wanted to use Velocyto for their RNA velocity, but the h5ad format makes more sense if you're using scVelo (the Anndata format is an extension of h5ad.)
