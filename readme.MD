@@ -80,12 +80,13 @@ But, before we do that, we will export all of the necessary meta-data from our S
 - Cluster Colors (Optional)
 
 ## Extracting Meta-data
-One way we can access our filtered cell id's is through Seurat's ```GetAssayData``` function and extract the column names:
+One way we can access our filtered cell id's is through Seurat's ```Cells``` function:
 
 ``` r
 %%R
-write.csv(colnames(GetAssayData(seurat_object)), file = "cellID_obs.csv")
+write.csv(Cells(seurat_object), file = "cellID_obs.csv")
 ```
+
 *If you have a Seurat object that is composed of multiple single-cell samples, you either can use the code above, and then later
 some type of pattern to extract each sample (for example, if you added unique cell prefixes to each sample then you
 could use that pattern.) Likewise, you can also create a cell ID observation file for every sample, and use each one 
