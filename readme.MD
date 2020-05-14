@@ -9,7 +9,7 @@
   * [Velocyto](#velocyto)
     + [Installation](#installation-1)
     + [Usage](#usage-1)
-- [Extracting Meta-data](#extracting-meta-data)
+- [Extracting Meta-data From a Seurat Object](#extracting-meta-data)
 - [Integrating Loom File and Meta-data](#integrating-loom-file-and-meta-data)
   * [Multiple-Sample Integration](#multiple-sample-integration)
 - [Running RNA Velocity](#running-rna-velocity)
