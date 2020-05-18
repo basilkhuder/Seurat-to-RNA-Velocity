@@ -43,7 +43,7 @@ Using KB is a two-step process with you first creating a reference and then gene
 The ```-g```, ```-f1```, ```-f2```, ```c1```, ```-c2``` are all files that will be generated from the kb ref step (you don't need to provide them, just give them names. ) 
 
 ```
-kb ref -i index.idx -g t2g.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_t2c.txt -c2 intron_t2c.txt --workflow lamanno \
+kb ref -i index.idx -g t2g.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_t2c.txt -c2 intron_t2c.txt --workflow lamanno -n 4 \
 fasta.fa \
 gtf.gtf
 ```
