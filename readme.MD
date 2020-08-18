@@ -32,13 +32,13 @@ To start, we will be generating loom files (a file format designed for genomics 
 
 ### Kallisto Bustools 
 #### Installation
-As of 5/12, to get the most up-to-date Kallisto Bustools (KB), you should install it from Github as shown below. Some of these parameters won't work if you install KB from pypi.org
+As of 8/17, to get the most up-to-date Kallisto Bustools (KB), you should install it from Github as shown below. Some of these parameters won't work if you install KB from pypi.org
 
 ```
 pip install git+https://github.com/pachterlab/kb_python@devel
 ```
 #### Usage
-Using KB is a two-step process with you first creating a reference and then generating the counts table. You'll need FASTA and GTF files for your species (download them from Ensembl if you need them: https://useast.ensembl.org/info/data/ftp/index.html)
+Using KB is a two-step process with you first creating a reference and then generating the counts table. You'll need FASTA and GTF files for your species (download them from Ensembl if you need them: https://useast.ensembl.org/index.html)
 
 The ```-g```, ```-f1```, ```-f2```, ```c1```, ```-c2``` are all files that will be generated from the kb ref step (you don't need to provide them, just give them names. ) 
 
@@ -214,3 +214,4 @@ color = sample_one.uns['Cluster_colors']
 *For Kallisto Bustools, why should I generate a loom file rather than an h5ad file?*
 <br>
 Either one is fine. I recommended generating a loom file just in case the user wanted to use Velocyto for their RNA velocity, but the h5ad format makes more sense if you're using scVelo (the Anndata format is an extension of h5ad.)
+
