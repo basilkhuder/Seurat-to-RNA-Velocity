@@ -41,7 +41,6 @@ pip install git+https://github.com/pachterlab/kb_python@devel
 Using KB is a two-step process with you first creating a reference and then generating the counts table. You'll need FASTA and GTF files for your species (download them from Ensembl if you need them: https://useast.ensembl.org/index.html)
 
 The ```-g```, ```-f1```, ```-f2```, ```c1```, ```-c2``` are all files that will be generated from the kb ref step (you don't need to provide them, just give them names. ) 
-
 ```
 kb ref -i index.idx -g t2g.txt -f1 cdna.fa -f2 intron.fa -c1 cdna_t2c.txt -c2 intron_t2c.txt --workflow lamanno -n 4 \
 fasta.fa \
@@ -59,7 +58,6 @@ Velocyto can be installed through pip.
 #Download dependencies first
 conda install numpy scipy cython numba matplotlib scikit-learn h5py click
 pip install velocyto
-
 ```
 #### Usage
 Note that I have found it easier to use ```velocyto run``` 
