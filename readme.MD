@@ -82,7 +82,7 @@ One way we can access our filtered cell id's is through Seurat's ```Cells``` fun
 
 ``` r
 %%R
-write.csv(Cells(seurat_object), file = "cellID_obs.csv", rownames = FALSE)
+write.csv(Cells(seurat_object), file = "cellID_obs.csv", row.names = FALSE)
 ```
 
 *If you have a Seurat object that is composed of multiple single-cell samples, you either can use the code above, and then later
