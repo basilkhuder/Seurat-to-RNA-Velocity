@@ -82,7 +82,7 @@ One way we can access our filtered cell id's is through Seurat's ```Cells``` fun
 
 ``` r
 %%R
-write.csv(Cells(seurat_object), file = "cellID_obs.csv")
+write.csv(Cells(seurat_object), file = "cellID_obs.csv", rownames = FALSE)
 ```
 
 *If you have a Seurat object that is composed of multiple single-cell samples, you either can use the code above, and then later
@@ -125,7 +125,7 @@ cell_clusters = pd.read_csv("clusters_obs.csv")
 With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon them.  
 
 ``` python
-sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,cellID_obs[0])]]
+sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,sample_obs["x"])]]
 ```
 ### Multiple-Sample Integration
 -------------------------------------------------
