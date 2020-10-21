@@ -125,7 +125,7 @@ cell_clusters = pd.read_csv("clusters_obs.csv")
 With our extracted Cell IDs from Seurat, we'll need to filter our uploaded loom (now as an anndata object) based upon them.  
 
 ``` python
-sample_one = sample_one[sample_one[np.isin(sample_one.obs.index,sample_obs["x"])]]
+sample_one = sample_one[np.isin(sample_one.obs.index,sample_obs["x"])]
 ```
 ### Multiple-Sample Integration
 -------------------------------------------------
