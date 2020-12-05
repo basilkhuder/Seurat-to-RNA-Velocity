@@ -78,6 +78,7 @@ But, before we do that, we will export all of the necessary meta-data from our S
 - Cluster Colors (Optional)
 
 ## Extracting Meta-data
+<i> I put the meta-extraction steps in this [Google Collab](https://colab.research.google.com/drive/1LDnUGrALuR6ulXUWtH9K1mPe6ESEKk3K?usp=sharing) document if you're interested in playing around with the code. </i><br>
 One way we can access our filtered cell id's is through Seurat's ```Cells``` function:
 
 ``` r
