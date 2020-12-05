@@ -32,7 +32,6 @@ To start, we will be generating loom files (a file format designed for genomics 
 
 ### Kallisto Bustools 
 #### Installation
-As of 8/17, to get the most up-to-date Kallisto Bustools (KB), you should install it from Github as shown below. Some of these parameters won't work if you install KB from pypi.org
 
 ```
 pip install git+https://github.com/pachterlab/kb_python@devel
