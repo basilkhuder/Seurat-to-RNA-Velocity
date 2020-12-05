@@ -147,12 +147,12 @@ You could use the pattern sample1_, sample2_, to filter as such:
 ``` python
 cellID_obs_sample_one = cellID_obs[cellID_obs_sample_one[0].str.contrains("sample1_")]
 cellID_obs_sample_two = cellID_obs[cellID_obs_sample_two[0].str.contrains("sample2_")]
-sample_one = sample_one[np.isin(sample_one.obs.index,cellID_obs_sample_one)]
-sample_two = sample_one[np.isin(sample_two.obs.index,cellID_obs_sample_two)]
+sample_one = sample_one[np.isin(sample_one.obs.index, cellID_obs_sample_one)]
+sample_two = sample_one[np.isin(sample_two.obs.index, cellID_obs_sample_two)]
 ```
 Once all the samples have been properly filtered, we can merge them into one. 
 ``` python
-sample_one = sample_one.concatenate(sample_two,sample_three,sample_four)
+sample_one = sample_one.concatenate(sample_two, sample_three, sample_four)
 ```
 -------------------------------------------------
 Now that we have our Velocity file filtered based upon our Seurat object, we can go ahead and add UMAP coordinates. We'll first upload them:
@@ -178,7 +178,7 @@ umap = umap.rename(Columns = {'Unnamed: 0':'Cell ID'})
 ```
 Now if we merge our index dataframe with our UMAP, the order will match our anndata object.
 ``` python
-umap_ordered = sample_one_index.merge(umap,on="Cell ID")
+umap_ordered = sample_one_index.merge(umap, on = "Cell ID")
 ```
 Since we're certain the orders are the same, we can remove the first column of the data frame and add the UMAP coordinates to our anndata object.
 ``` python
@@ -200,7 +200,7 @@ scv.pp.filter_and_normalize(sample_one)
 scv.pp.moments(sample_one)
 scv.tl.velocity(sample_one, mode = "stochastic")
 scv.tl.velocity_graph(sample_one)
-scv.pl.velocity_embedding(sample_one, basis='umap')
+scv.pl.velocity_embedding(sample_one, basis = 'umap')
 ```
 If you want to incorporate your clusters and cluster colors in the embedding plot, the parameters you would add would be:
 ```
