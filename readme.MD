@@ -169,7 +169,7 @@ sample_one.obs.index
 Let's cast our index as a data frame and change the column name
 
 ``` python
-sample_one_index = pd.DataFrame(sample_one.obs.index]
+sample_one_index = pd.DataFrame(sample_one.obs.index)
 sample_one = sample_one_index.rename(columns = {0:'Cell ID'})
 ```
 Let's also change the first column of our UMAP data frame to the same name:
