@@ -81,7 +81,6 @@ But, before we do that, we will export all of the necessary meta-data from our S
 One way we can access our filtered cell id's is through Seurat's ```Cells``` function:
 
 ``` r
-%%R
 write.csv(Cells(seurat_object), file = "cellID_obs.csv", row.names = FALSE)
 ```
 
