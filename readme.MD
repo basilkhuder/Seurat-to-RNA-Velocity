@@ -93,13 +93,11 @@ individually to filter each RNA Velocity object.*
 To get UMAP or TSNE coordinates, we use the ```Embeddings``` function:
 
 ``` r
-%%R
 write.csv(Embeddings(seurat_object, reduction = "umap"), file = "cell_embeddings.csv")
 ```
 And finally we can extract our clusters with: 
 
 ```r
-%%R
 write.csv(seurat_object@meta.data$seurat_clusters, file = "clusters.csv")
 ```
 ## Integrating Loom File and Meta-data
