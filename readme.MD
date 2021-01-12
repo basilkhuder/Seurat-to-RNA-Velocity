@@ -28,7 +28,11 @@ This guide will demonstrate how to use a processed/normalized Seurat object in c
 
  ## Generating Loom files
 
-To start, we will be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis. The two methods I will discuss for doing this will be Velocyto's ```run``` command and Kallisto Bustools (KB.) 
+To start, we will be generating loom files (a file format designed for genomics datasets such as single-cell) for every single-cell sample you used in your Seurat analysis. A loom file is <strong>different</strong> from the file format you used in Seurat. A loom file has to be generated from the original FASTQ or BAM files for your samples(s). 
+<img src="loom_file.png" alt="A loom file description" style="width: 10px"/>
+
+
+The two methods I will discuss for doing this will be Velocyto's ```run``` command and Kallisto Bustools (KB.) 
 
 ### Kallisto Bustools 
 #### Installation
