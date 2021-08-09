@@ -175,7 +175,7 @@ sample_one = sample_one_index.rename(columns = {0:'Cell ID'})
 Let's also change the first column of our UMAP data frame to the same name:
 
 ``` python
-umap = umap.rename(Columns = {'Unnamed: 0':'Cell ID'})
+umap = umap.rename(columns = {'Unnamed: 0':'Cell ID'})
 ```
 Now if we merge our index dataframe with our UMAP, the order will match our anndata object.
 ``` python
